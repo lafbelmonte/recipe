@@ -1,24 +1,21 @@
 import express from 'express'
-import { Server } from 'http'
 import mongoose from './libs/mongoose'
-
-type Context = {
-  server: Server
-}
+import registrationRouter from './routes/registration'
 
 export default {
-  async start(this: Context) {
+  async start(this: any) {
     const app = express()
 
-    app.get('/', function (req, res) {
-      res.send('Hello World')
-    })
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
+
+    app.use('/register', registrationRouter)
 
     await mongoose.start()
 
     this.server = app.listen(3000, () => console.log('Server started.'))
   },
-  async stop(this: Context) {
+  async stop(this: any) {
     await mongoose.stop()
     this.server.close(() => {
       console.log('Server closed.')
