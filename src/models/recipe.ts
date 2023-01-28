@@ -26,7 +26,18 @@ const schema = new Schema<RecipeDocument>(
       required: true
     }
   },
-  { _id: false }
+  {
+    _id: false,
+    toJSON: {
+      transform(_doc: {}, ret: Document) {
+        ret.id = ret._id
+
+        delete ret._id
+        delete ret.__v
+      },
+      virtuals: true
+    }
+  }
 )
 
 export default model<RecipeDocument>('Recipe', schema)
