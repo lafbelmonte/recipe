@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+// mongoose connection and disconnection
 export default {
   async start() {
     mongoose.connection.on('connected', () => {

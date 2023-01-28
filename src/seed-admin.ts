@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import mongoose from './libs/mongoose'
 import { UserRole } from './types'
 
+// seeder to create an initial admin (will only create once)
 export default {
   async start() {
     await mongoose.start()

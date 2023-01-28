@@ -1,3 +1,5 @@
+// typings for entities used in the system
+
 export enum UserRole {
   Basic = 'BASIC',
   Admin = 'ADMIN'

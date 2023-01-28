@@ -6,6 +6,8 @@ The entire API runs on Node.js and is fully written in TypeScript.
 
 It utilizes MongoDB for fetching and storing of data, which is being ran in docker. (see `docker-compose.yml`)
 
+It follows the [Route-Controller-Service structure for ExpressJS](https://devtut.github.io/nodejs/route-controller-service-structure-for-expressjs.html).
+
 Node version used: v16.19.0.
 
 ## Setup Database

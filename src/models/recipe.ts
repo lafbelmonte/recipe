@@ -29,6 +29,7 @@ const schema = new Schema<RecipeDocument>(
   {
     _id: false,
     toJSON: {
+      // parse document output. _id should be id and __v should be removed
       transform(_doc: {}, ret: Document) {
         ret.id = ret._id
 
