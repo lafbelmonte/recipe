@@ -9,7 +9,7 @@ export default {
     await mongoose.start()
 
     const admin = await UserModel.findOne({
-      email: 'lafbelmonte@gmail.com'
+      email: 'test@gmail.com'
     })
 
     if (!admin) {
@@ -17,7 +17,7 @@ export default {
 
       await UserModel.create({
         _id: uuidv4(),
-        email: 'lafbelmonte@gmail.com',
+        email: 'test@gmail.com',
         password,
         role: UserRole.Admin
       })

@@ -1,6 +1,7 @@
 import '../common'
 import supertest from 'supertest'
 import { expect } from 'chai'
+import bcrypt from 'bcrypt'
 import UserModel from '../../src/models/user'
 import { v4 as uuidv4 } from 'uuid'
 import { UserRole } from '../../src/types'
@@ -12,7 +13,7 @@ describe('Registration', () => {
   describe('GIVEN basic user registers', () => {
     beforeEach(async function () {
       this.response = await this.request.post('/register').send({
-        email: 'luisdev986@gmail.com',
+        email: 'basic@gmail.com',
         password: 'password'
       })
     })
@@ -43,7 +44,7 @@ describe('Registration', () => {
   describe('GIVEN basic user registers without a password', () => {
     beforeEach(async function () {
       this.response = await this.request.post('/register').send({
-        email: 'luisdev986@gmail.com'
+        email: 'basic@gmail.com'
       })
     })
 
@@ -69,13 +70,13 @@ describe('Registration', () => {
     beforeEach(async function () {
       await UserModel.create({
         _id: uuidv4(),
-        email: 'luisdev986@gmail.com',
-        password: 'password',
+        email: 'basic@gmail.com',
+        password: await bcrypt.hash('password', 10),
         role: UserRole.Basic
       })
 
       this.response = await this.request.post('/register').send({
-        email: 'luisdev986@gmail.com',
+        email: 'basic@gmail.com',
         password: 'password'
       })
     })

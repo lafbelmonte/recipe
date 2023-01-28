@@ -1,6 +1,10 @@
 import express from 'express'
 import mongoose from './libs/mongoose'
 import registrationRouter from './routes/registration'
+import loginRouter from './routes/login'
+import UserRouter from './routes/user'
+import * as jwt from './libs/jwt'
+import * as permissions from './libs/permissions'
 
 export default {
   async start(this: any) {
@@ -10,6 +14,8 @@ export default {
     app.use(express.urlencoded({ extended: true }))
 
     app.use('/register', registrationRouter)
+    app.use('/login', loginRouter)
+    app.use('/user', jwt.verifyToken, permissions.user, UserRouter)
 
     await mongoose.start()
 
