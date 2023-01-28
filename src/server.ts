@@ -15,7 +15,7 @@ export default {
 
     app.use('/register', registrationRouter)
     app.use('/login', loginRouter)
-    app.use('/user', jwt.verifyToken, permissions.user, UserRouter)
+    app.use('/users', jwt.verifyToken, permissions.user, UserRouter)
 
     await mongoose.start()
 
