@@ -3,8 +3,9 @@ import mongoose from './libs/mongoose'
 import registrationRouter from './routes/registration'
 import loginRouter from './routes/login'
 import UserRouter from './routes/user'
+import RecipeRouter from './routes/recipe'
 import * as jwt from './libs/jwt'
-import * as permissions from './libs/permissions'
+import verifyAdmin from './libs/verify-admin'
 
 export default {
   async start(this: any) {
@@ -15,7 +16,8 @@ export default {
 
     app.use('/register', registrationRouter)
     app.use('/login', loginRouter)
-    app.use('/users', jwt.verifyToken, permissions.user, UserRouter)
+    app.use('/users', jwt.verifyToken, verifyAdmin, UserRouter)
+    app.use('/recipes', jwt.verifyToken, RecipeRouter)
 
     await mongoose.start()
 

@@ -9,3 +9,11 @@ export type User = {
   password: string
   role: UserRole
 }
+
+export type Recipe = {
+  id: string
+  name: string
+  ingredients: string
+  instructions: string
+  createdBy: string
+}
